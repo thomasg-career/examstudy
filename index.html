@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Study Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>📚 Dashboard</h2>
+    <ul>
+      <li onclick="showTab('dashboard')">🏠 Home</li>
+      <li onclick="showTab('timetable')">📝 Timetable</li>
+      <li onclick="showTab('timer')">⏳ Study Timer</li>
+      <li onclick="showTab('settings')">⚙️ Settings</li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <main class="content">
+    <header class="header">
+      <h1>Exam Study Dashboard</h1>
+      <span id="liveClock"></span>
+    </header>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="tab active">
+      <div class="stats">
+        <div class="stat-card">
+          <h3>Total Study Hours</h3>
+          <p id="totalHours">0 hrs</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Sessions</h3>
+          <p id="totalSessions">0</p>
+        </div>
+        <div class="stat-card highlight">
+          <h3>Next Exam In</h3>
+          <p id="daysLeft">–</p>
+        </div>
+      </div>
+      <div class="graph-box">
+        <h3>📈 Study Progress</h3>
+        <canvas id="studyChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Timetable -->
+    <section id="timetable" class="tab">
+      <h2>📝 Exam Timetable</h2>
+      <div class="form fancy-form">
+        <input type="text" id="subject" placeholder="📘 Subject">
+        <input type="date" id="date">
+        <input type="time" id="time">
+        <button class="glow-btn" onclick="addExam()">➕ Add Exam</button>
+      </div>
+      <div id="timetableCards" class="card-grid"></div>
+    </section>
+
+    <!-- Timer -->
+    <section id="timer" class="tab">
+      <h2>⏳ Study Timer</h2>
+      <div class="timer-box">
+        <select id="subjectSelect"></select>
+        <input type="text" id="customSubject" placeholder="✏️ Or type subject">
+        <input type="number" id="goalMinutes" placeholder="🎯 Goal (mins)">
+        <div id="timerDisplay" class="neon">0m 0s</div>
+        <div class="buttons">
+          <button class="circle-btn" onclick="startTimer()">▶</button>
+          <button class="circle-btn" onclick="pauseTimer()">⏸</button>
+          <button class="circle-btn" onclick="saveSession()">💾</button>
+        </div>
+        <p id="quoteBox">"Stay focused, stay positive!"</p>
+      </div>
+      <ul id="sessions"></ul>
+    </section>
+
+    <!-- Settings -->
+    <section id="settings" class="tab">
+      <h2>⚙️ Settings</h2>
+      <label>
+        <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()"> Dark Mode
+      </label>
+      <button class="danger glow-btn" onclick="resetAll()">Reset All Data</button>
+
+      <h3>💡 Exam Tips</h3>
+      <div class="tips-grid">
+        <div class="tip-card">📖 Revise daily</div>
+        <div class="tip-card">🛌 Sleep well</div>
+        <div class="tip-card">💧 Stay hydrated</div>
+        <div class="tip-card">✍️ Practice questions</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
